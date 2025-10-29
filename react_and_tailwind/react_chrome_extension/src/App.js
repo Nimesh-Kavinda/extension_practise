@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const handleAdd = () => {
-    setCount(count + 1);
-  };
-  const handleSubtract = () => {
-    setCount(count - 1);
-  };
+  const [count, setCount] = useState(
+    parseInt(localStorage.getItem('count')) || 0
+  );
 
-  const handleReset = () => {
-    setCount(0);
-  };
+  const handleAdd = () => setCount(count + 1);
+  const handleSubtract = () => setCount(count - 1);
+  const handleReset = () => setCount(0);
+
+  useEffect(() => {
+    localStorage.setItem('count', count);
+  }, [count]);
 
   return (
     <>
